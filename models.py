@@ -10,26 +10,60 @@ from otree.api import (
 )
 
 
-author = 'Your name here'
-
 doc = """
-Your app description
+Este es un juego de 10 rondas sobre elección de niveles de prevención con 10 jugadores.
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'exp_info_comport'
-    players_per_group = None
-    num_rounds = 1
+    name_in_url = 'prevention_level'
+    players_per_group = 10
+    num_rounds = 10
+
+    introduction_template = 'prevention_level/Introduction.html'
+    general_instructions = 'prevention_level/GeneralInstructions.html'
+    specific_instructions = 'prevention_level/SpecificInstructions.html'
+
+    # """Amount allocated to each player"""
+    endowment = c(150)
+    multiplier = 50
 
 
 class Subsession(BaseSubsession):
-    pass
+    def vars_for_admin_report(self):
+        contributions = [
+            p.contribution for p in self.get_players() if p.contribution != None
+        ]
+        if contributions:
+            return dict(
+                avg_contribution=sum(contributions) / len(contributions),
+                min_contribution=min(contributions),
+                max_contribution=max(contributions),
+            )
+        else:
+            return dict(
+                avg_contribution='(no data)',
+                min_contribution='(no data)',
+                max_contribution='(no data)',
+            )
 
 
 class Group(BaseGroup):
-    pass
+    total_contribution = models.CurrencyField()
+
+    individual_share = models.CurrencyField()
+
+    def set_payoffs(self):
+        self.total_contribution = sum([p.contribution for p in self.get_players()])
+        self.individual_share = (
+            self.total_contribution * Constants.multiplier / Constants.players_per_group
+        )
+        for p in self.get_players():
+            p.payoff = (Constants.endowment - p.contribution) + self.individual_share
 
 
 class Player(BasePlayer):
-    pass
+    contribution = models.CurrencyField(
+        min=0, max=Constants.endowment, doc="""The amount contributed by the player""",
+        label="How much will you contribute to the project (from 0 to 100)?"
+    )
