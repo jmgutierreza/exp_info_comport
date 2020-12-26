@@ -2,13 +2,17 @@ from ._builtin import Page, WaitPage
 from otree.api import Currency as c, currency_range
 from .models import Constants
 
+class Welcome(Page):
+    """Welcome page"""
 
 class Introduction(Page):
-    """Description of the game: How to play and returns expected"""
+    """Description of the game"""
 
     pass
 
-
+class Game(Page):
+     """How to play and returns expected"""
+    
 class Contribute(Page):
     """Player: Choose how much to contribute"""
 
@@ -29,4 +33,4 @@ class Results(Page):
         return dict(costo_contagiado= self.player.prob_intrinseca)
 
 
-page_sequence = [Introduction, Contribute, ResultsWaitPage, Results]
+page_sequence = [Welcome, Introduction, Game, Contribute, ResultsWaitPage, Results]
