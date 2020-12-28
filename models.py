@@ -31,11 +31,11 @@ class Subsession(BaseSubsession):
     def creating_session(self):
 
         for p in self.get_players():
-            #if self.round_number == 1:
-                p.prob_intrinseca = int(random.randint(0,50))
-                p.tratado_1 = int(random.randint(0,1))
-            #else:
-                #p.prob_intrinseca = p.in_round(1).prob_intrinseca
+            p.prob_intrinseca = int(random.randint(0,50))
+            if self.round_number == 1:
+                p.tratado_1 = int(random.randint(0,2))
+            else:
+                p.tratado_1 = p.in_round(1).tratado_1
 
     def vars_for_admin_report(self):
         precautions = [
