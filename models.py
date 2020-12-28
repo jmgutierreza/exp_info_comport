@@ -24,6 +24,7 @@ class Constants(BaseConstants):
     instructions_template = 'pandemia/instructions.html'
     prob_intrinseca = int(20)
     prob_contagio = float(0.4)
+    tratado_1 = int(1)
 
 class Subsession(BaseSubsession):
 
@@ -32,6 +33,7 @@ class Subsession(BaseSubsession):
         for p in self.get_players():
             #if self.round_number == 1:
                 p.prob_intrinseca = int(random.randint(0,50))
+                p.tratado_1 = int(random.randint(0,1))
             #else:
                 #p.prob_intrinseca = p.in_round(1).prob_intrinseca
 
@@ -74,10 +76,6 @@ class Group(BaseGroup):
                 p.pago_acumulado = p.in_round(self.round_number - 1).pago_acumulado + p.payoff
 
 
-
-
-
-
 class Player(BasePlayer):
 
     prob_intrinseca = models.IntegerField()
@@ -89,4 +87,4 @@ class Player(BasePlayer):
     prob_contagio = models.FloatField()
     contagiado = models.IntegerField()
     pago_acumulado = models.CurrencyField()
-    tratado_1 = models.IntegerField(initial = random.randint(0,1))
+    tratado_1 = models.IntegerField()

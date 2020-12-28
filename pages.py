@@ -17,6 +17,9 @@ class Introduction(Page):
 
 class Game(Page):
     """How to play and returns expected"""
+    def is_displayed(self):
+        return self.round_number == 1
+    pass
 
 
 class Contribute(Page):
@@ -38,5 +41,19 @@ class Results(Page):
     def vars_for_template(self):
         return dict(costo_contagiado=self.player.prob_intrinseca)
 
+class Treatment_1(Page):
+    """Just for treated group 1"""
+    def is_displayed(self):
+        return self.player.tratado_1 == 1
+        return self.round_number == 1
 
-page_sequence = [Welcome, Introduction, Game, Contribute, ResultsWaitPage, Results]
+
+class Treatment_2(Page):
+    """"Just for treated group 2"""
+    def is_displayed(self):
+        return self.player.tratado_1 == 0
+        return self.round_number == 1
+
+
+
+page_sequence = [Welcome, Introduction, Game, Contribute, ResultsWaitPage, Results, Treatment_1, Treatment_2]
