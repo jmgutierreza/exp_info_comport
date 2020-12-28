@@ -10,6 +10,7 @@ from otree.api import (
 )
 
 import random
+import numpy
 doc = """
 This is a ten period pandemic-response game
 """
@@ -29,11 +30,10 @@ class Subsession(BaseSubsession):
     def creating_session(self):
 
         for p in self.get_players():
-            if self.round_number == 1:
+            #if self.round_number == 1:
                 p.prob_intrinseca = int(random.randint(0,50))
-            else:
-                p.prob_intrinseca = p.in_round(1).prob_intrinseca
-
+            #else:
+                #p.prob_intrinseca = p.in_round(1).prob_intrinseca
 
     def vars_for_admin_report(self):
         precautions = [
@@ -66,6 +66,8 @@ class Group(BaseGroup):
         for p in self.get_players():
             p.payoff = (Constants.endowment - c(p.precaution) * c(p.precaution))
             p.prob_contagio = p.prob_intrinseca + (5 - 0.4 * p.precaution - 0.6 * self.mean_precaution) * 10
+            p.contagiado = numpy.random.binomial(1, p.prob_contagio/100, size=None)
+
 
 
 
