@@ -76,7 +76,7 @@ class Player(BasePlayer):
     prob_intrinseca = models.IntegerField()
     precaution = models.IntegerField(
         min=0, max=5, doc="""The level of precaution taken by the player""",
-        label="How much precaution will you choose to take (from 0 to 5)?" ,
+        label="¿Cuánto nivel de precaución elegirás adoptar (del 0 al 5)?" ,
         choices = [0, 1, 2, 3, 4, 5]
     )
     prob_contagio = models.FloatField()
