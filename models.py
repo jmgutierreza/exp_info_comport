@@ -30,7 +30,7 @@ class Subsession(BaseSubsession):
 
         for p in self.get_players():
             if self.round_number == 1:
-                p.prob_intrinseca = int(random.randint(c(5),c(50)))
+                p.prob_intrinseca = int(random.randint(0,50))
             else:
                 p.prob_intrinseca = p.in_round(1).prob_intrinseca
 
