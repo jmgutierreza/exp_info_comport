@@ -45,14 +45,14 @@ class Treatment_1(Page):
     """Just for treated group 1"""
     def is_displayed(self):
         return self.player.tratado_1 == 1
-        return self.round_number == 1
+        #return self.round_number == 1
 
 
 class Treatment_2(Page):
     """"Just for treated group 2"""
     def is_displayed(self):
-        return self.player.tratado_1 == 0
-        return self.round_number == 1
+        return self.player.tratado_1 == 2 and self.round_number == 1
+        #return self.round_number == 1
 
 
 
