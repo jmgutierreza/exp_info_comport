@@ -8,22 +8,22 @@
 {% block content %}
 
     <table class="table-condensed" style="width:500px; margin-top:20px;">
-        <tr><td>Tú elegiste este nivel de prevención:</td><td>{{ player.precaution }}</td></tr>
+        <tr><td><b>Tú elegiste este nivel de prevención:</b></td><td>{{ player.precaution }}</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Nivel de prevención promedio:</td><td>{{ group.mean_precaution }}</td></tr>
+        <tr><td><b>Nivel de prevención promedio:</b></td><td>{{ group.mean_precaution }}</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Tu probabilidad intrinseca de contagio fue:</td><td>{{ player.prob_intrinseca }}</td></tr>
-        <tr><td>Tu probabilidad total de contagio fue:</td><td>{{ player.prob_contagio }}</td></tr>
-        <tr><td>¿Contagiado?</td><td>{{ player.contagiado }}</td></tr>
+        <tr><td><b>Tu probabilidad intrinseca de contagio fue:</b></td><td>{{ player.prob_intrinseca }}</td></tr>
+        <tr><td><b>Tu probabilidad total de contagio fue:</b></td><td>{{ player.prob_contagio }}</td></tr>
+        <tr><td><b>¿Contagiado?</b></td><td>{{ player.contagiado }}</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td>Ganaste en esta ronda:</td><td>{{ player.payoff }}</td></tr>
-        <tr><td>Hasta el momento vas ganando:</td><td>{{ player.pago_acumulado }}</td></tr>
+        <tr><td><b>Ganaste en esta ronda:</b></td><td>{{ player.payoff }}</td></tr>
+        <tr><td><b>Hasta el momento vas ganando:</b></td><td>{{ player.pago_acumulado }}</td></tr>
 
     </table>
     <p></p>
