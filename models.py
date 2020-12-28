@@ -66,10 +66,11 @@ class Group(BaseGroup):
         for p in self.get_players():
             p.prob_contagio = p.prob_intrinseca + (5 - 0.4 * p.precaution - 0.6 * self.mean_precaution) * 10
             p.contagiado = numpy.random.binomial(1, p.prob_contagio/100, size=None)
-            p.payoff = (Constants.endowment - c(p.precaution) * c(p.precaution)-c(100)*c(p.contagiado))
             if self.round_number == 1:
+                p.payoff = (Constants.endowment + c(50) - c(p.precaution) * c(p.precaution) - c(100) * c(p.contagiado))
                 p.pago_acumulado = p.payoff
             else:
+                p.payoff = (c(50) - c(p.precaution) * c(p.precaution) - c(100) * c(p.contagiado))
                 p.pago_acumulado = p.in_round(self.round_number - 1).pago_acumulado + p.payoff
 
 
@@ -88,4 +89,4 @@ class Player(BasePlayer):
     prob_contagio = models.FloatField()
     contagiado = models.IntegerField()
     pago_acumulado = models.CurrencyField()
-    tratado_1 = random.randint(0,1)
+    tratado_1 = models.IntegerField(initial = random.randint(0,1))
