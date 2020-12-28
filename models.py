@@ -29,11 +29,12 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
 
     def creating_session(self):
-
+        import itertools
+        tipos = itertools.cycle([0,1,2])
         for p in self.get_players():
             p.prob_intrinseca = int(random.randint(0,50))
             if self.round_number == 1:
-                p.tratado_1 = int(random.randint(0,2))
+                p.tratado_1 = next(tipos) #int(random.randint(0,2))
             else:
                 p.tratado_1 = p.in_round(1).tratado_1
 
@@ -66,7 +67,8 @@ class Group(BaseGroup):
             0.6/ Constants.players_per_group
         )
         for p in self.get_players():
-            p.prob_contagio = p.prob_intrinseca + (5 - 0.4 * p.precaution - 0.6 * self.mean_precaution) * 10
+            p.prob_otros = (self.mean_precaution- p.precaution*(1/Constants.players_per_group))*(Constants.players_per_group / (Constants.players_per_group -1))
+            p.prob_contagio = p.prob_intrinseca + (5 - 0.4 * p.precaution - 0.6 * p.prob_otros) * 10
             p.contagiado = numpy.random.binomial(1, p.prob_contagio/100, size=None)
             if self.round_number == 1:
                 p.payoff = (Constants.endowment + c(50) - c(p.precaution) * c(p.precaution) - c(100) * c(p.contagiado))
@@ -88,3 +90,4 @@ class Player(BasePlayer):
     contagiado = models.IntegerField()
     pago_acumulado = models.CurrencyField()
     tratado_1 = models.IntegerField()
+    prob_otros = models.FloatField()
