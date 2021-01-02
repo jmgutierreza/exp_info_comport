@@ -21,6 +21,11 @@ class Game(Page):
         return self.round_number == 1
     pass
 
+class Probab(Page):
+    """How affect the prevention level"""
+    def is_displayed(self):
+        return self.round_number == 1
+    pass
 
 class Contribute(Page):
     """Player: Choose how much to contribute"""
@@ -44,7 +49,7 @@ class Results(Page):
 class Treatment_1(Page):
     """Just for treated group 1"""
     def is_displayed(self):
-        return self.player.tratado_1 == 1
+        return self.player.tratado_1 == 1 and self.round_number == 1
         #return self.round_number == 1
 
 
@@ -56,4 +61,4 @@ class Treatment_2(Page):
 
 
 
-page_sequence = [Welcome, Introduction, Game, Contribute, ResultsWaitPage, Results, Treatment_1, Treatment_2]
+page_sequence = [Welcome, Introduction, Game, Probab, Contribute, ResultsWaitPage, Results, Treatment_1, Treatment_2]
