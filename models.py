@@ -62,13 +62,13 @@ class Group(BaseGroup):
     individual_share = models.FloatField()
 
     def set_payoffs(self):
-        self.mean_precaution = sum([p.precaution for p in self.get_players()])/Constants.players_per_group
+        self.mean_precaution = round(sum([p.precaution for p in self.get_players()])/Constants.players_per_group, ndigits= 2)
         self.individual_share = (
             0.6/ Constants.players_per_group
         )
         for p in self.get_players():
             p.prob_otros = (self.mean_precaution- p.precaution*(1/Constants.players_per_group))*(Constants.players_per_group / (Constants.players_per_group -1))
-            p.prob_contagio = p.prob_intrinseca + (5 - 0.4 * p.precaution - 0.6 * p.prob_otros) * 10
+            p.prob_contagio = round(p.prob_intrinseca + (5 - 0.4 * p.precaution - 0.6 * p.prob_otros) * 10)
             p.contagiado = numpy.random.binomial(1, p.prob_contagio/100, size=None)
             if self.round_number == 1:
                 p.payoff = (Constants.endowment + c(50) - c(p.precaution) * c(p.precaution) - c(100) * c(p.contagiado))
