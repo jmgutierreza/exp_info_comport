@@ -16,10 +16,14 @@
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td><b>Tu probabilidad intrinseca de contagio fue:</b></td><td>{{ player.prob_intrinseca }}</td></tr>
-        <tr><td><b>Tu probabilidad total de contagio fue:</b></td><td>{{ player.prob_contagio }}</td></tr>
-        <tr><td><b>¿Contagiado?</b></td><td>{{ player.contagiado }}</td></tr>
+        <tr><td><b>Tu probabilidad base de contagio fue:</b></td><td>{{ player.prob_intrinseca }}</td></tr>
 
+        <tr><td><b>Tu probabilidad total de contagio fue:</b></td><td>{{ player.prob_contagio }}</td></tr>
+        {% if player.contagiado == 1 %}
+        <tr><td><b>¿Contagiado?</b></td><td>Sí</td></tr>
+        {% else %}
+        <tr><td><b>¿Contagiado?</b></td><td>No</td></tr>
+        {% endif %}
         <tr><td colspan="2"><hr/></td></tr>
 
         <tr><td><b>Ganaste en esta ronda:</b></td><td>{{ player.payoff }}</td></tr>
