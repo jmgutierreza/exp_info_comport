@@ -1,21 +1,3 @@
-from otree.api import (
-    models,
-    widgets,
-    BaseConstants,
-    BaseSubsession,
-    BaseGroup,
-    BasePlayer,
-    Currency as c,
-    currency_range,
-)
-
-import random
-import numpy
-doc = """
-This is a ten period pandemic-response game
-"""
-
-
 class Constants(BaseConstants):
     name_in_url = 'pandemia'
     players_per_group = 3
@@ -29,12 +11,12 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
 
     def creating_session(self):
-        import itertools
-        tipos = itertools.cycle([0,1,2])
+        #import itertools
+        #tipos = itertools.cycle([0,1,2])
         for p in self.get_players():
             p.prob_intrinseca = int(random.randint(0,50))
             if self.round_number == 1:
-                p.tratado_1 = next(tipos) #int(random.randint(0,2))
+                p.tratado_1 = 0 #next(tipos)
             else:
                 p.tratado_1 = p.in_round(1).tratado_1
 
