@@ -8,6 +8,7 @@
 {% block content %}
 
     <table class="table-condensed" style="width:500px; margin-top:20px;">
+        <tr><td><b>Ronda N°:</b></td><td>{{ self.round_number }}</td></tr>
         <tr><td><b>Tú elegiste este nivel de prevención:</b></td><td>{{ player.precaution }}</td></tr>
 
         <tr><td colspan="2"><hr/></td></tr>
@@ -16,9 +17,9 @@
 
         <tr><td colspan="2"><hr/></td></tr>
 
-        <tr><td><b>Tu probabilidad base de contagio fue:</b></td><td>{{ player.prob_intrinseca }}</td></tr>
+        <tr><td><b>Tu probabilidad base de contagio fue:</b></td><td>{{ player.prob_intrinseca }}%</td></tr>
 
-        <tr><td><b>Tu probabilidad total de contagio fue:</b></td><td>{{ player.prob_contagio }}</td></tr>
+        <tr><td><b>Tu probabilidad total de contagio fue:</b></td><td>{{ player.prob_contagio }}%</td></tr>
         {% if player.contagiado == 1 %}
         <tr><td><b>¿Contagiado?</b></td><td>Sí</td></tr>
         {% else %}
