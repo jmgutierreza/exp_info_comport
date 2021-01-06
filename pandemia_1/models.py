@@ -21,7 +21,7 @@ class Constants(BaseConstants):
     num_rounds = 10
     instructions_template = 'pandemia/instructions.html'
     prob_intrinseca = int(20)
-    prob_contagio = float(0.4)
+    prob_contagio = int(0)
     tratado_1 = int(1)
 
 class Subsession(BaseSubsession):
@@ -84,7 +84,7 @@ class Player(BasePlayer):
         label="¿Cuánto nivel de precaución elegirás adoptar (del 0 al 5)?" ,
         choices = [0, 1, 2, 3, 4, 5]
     )
-    prob_contagio = models.FloatField()
+    prob_contagio = models.IntegerField()
     contagiado = models.IntegerField()
     pago_acumulado = models.CurrencyField()
     tratado_1 = models.IntegerField()
