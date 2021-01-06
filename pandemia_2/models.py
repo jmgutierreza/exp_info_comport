@@ -15,23 +15,24 @@ doc = """
 This is a ten period pandemic-response game
 """
 
-
 class Constants(BaseConstants):
     name_in_url = 'pandemia_2'
     players_per_group = 5
     num_rounds = 10
     instructions_template = 'pandemia/instructions.html'
     prob_intrinseca = int(20)
-    prob_contagio = float(0.4)
+    prob_contagio = int(0)
     tratado_1 = int(1)
 
 class Subsession(BaseSubsession):
 
     def creating_session(self):
+        #import itertools
+        #tipos = itertools.cycle([0,1,2])
         for p in self.get_players():
             p.prob_intrinseca = int(random.randint(0,50))
             if self.round_number == 1:
-                p.tratado_1 = 2
+                p.tratado_1 = 2 #next(tipos)
             else:
                 p.tratado_1 = p.in_round(1).tratado_1
 
@@ -83,7 +84,7 @@ class Player(BasePlayer):
         label="¿Cuánto nivel de precaución elegirás adoptar (del 0 al 5)?" ,
         choices = [0, 1, 2, 3, 4, 5]
     )
-    prob_contagio = models.FloatField()
+    prob_contagio = models.IntegerField()
     contagiado = models.IntegerField()
     pago_acumulado = models.CurrencyField()
     tratado_1 = models.IntegerField()
