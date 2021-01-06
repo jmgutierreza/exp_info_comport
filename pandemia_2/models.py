@@ -18,9 +18,8 @@ This is a ten period pandemic-response game
 
 class Constants(BaseConstants):
     name_in_url = 'pandemia_2'
-    players_per_group = 3
+    players_per_group = 5
     num_rounds = 10
-    endowment = c(150)
     instructions_template = 'pandemia/instructions.html'
     prob_intrinseca = int(20)
     prob_contagio = float(0.4)
@@ -69,10 +68,10 @@ class Group(BaseGroup):
             p.prob_contagio = round(p.prob_intrinseca + (5 - 0.4 * p.precaution - 0.6 * p.prob_otros) * 10)
             p.contagiado = numpy.random.binomial(1, p.prob_contagio/100, size=None)
             if self.round_number == 1:
-                p.payoff = (Constants.endowment + c(50) - c(p.precaution) * c(p.precaution) - c(100) * c(p.contagiado))
+                p.payoff = (c(50) - c(p.precaution) * c(p.precaution) - c(70) * c(p.contagiado))
                 p.pago_acumulado = p.payoff
             else:
-                p.payoff = (c(50) - c(p.precaution) * c(p.precaution) - c(100) * c(p.contagiado))
+                p.payoff = (c(50) - c(p.precaution) * c(p.precaution) - c(70) * c(p.contagiado))
                 p.pago_acumulado = p.in_round(self.round_number - 1).pago_acumulado + p.payoff
 
 

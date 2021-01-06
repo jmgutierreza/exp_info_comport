@@ -34,55 +34,52 @@
             contagio hasta el final de la ronda.</li>
         <li>Usted tendrá que escoger qué nivel de prevención desea asumir en la escala de 0 a 5.</li>
         <li>Cada nivel de protección adicional reduce la probabilidad de contagio en 10%. Sin embargo, la reducción
-            total depende, en un 40% del nivel de protección que usted elija y en un 60% del nivel de protección que
+            total depende, en un 60% del nivel de protección que usted elija y en un 40% del nivel de protección que
             elijan sus compañeros.</li>
-        <li>A medida que asuma mayor nivel de protección, la probabilidad de que contraiga la enfermedad será más
-            baja. Sin embargo, esto también dependerá del nivel de protección que asuman los demás participantes.</li>
         <li>Si usted elige un nivel de protección igual a X, entonces el costo de dicho nivel será de X<sup>2</sup>
             puntos. Por ende, si no desea protegerse (escoge 0), su costo será cero y si desea estar muy protegido
             (escoge 5), su costo será de 25 puntos.</li>
-        <li>Si usted es contagiado, perderá 100 puntos para cubrir costos de salud. Luego de enfermarse, las reglas
+        <li>Si usted es contagiado, perderá 70 puntos para cubrir costos de salud. Luego de enfermarse, las reglas
             del juego no cambian. Por lo que existe la posibilidad de que vuelva a enfermarse.</li>
-        <li>El pago en la primera ronda se determinará de la siguiente manera:
+        <li>El pago en cada ronda se determinará de la siguiente manera:
 
             <h6 align="center">
                  <math>
-	                    Pago = 150 + 50 - X<sup>2</sup> - 100    (Si es contagiado)
+	                    Pago = 50 - X<sup>2</sup> - 70    (Si es contagiado)
                  </math>
             </h6>
 
             <h6 align="center">
                  <math>
-                        Pago = 150 + 50 - X<sup>2</sup> - 0    (Si NO es contagiado)
+                        Pago = 50 - X<sup>2</sup> - 0    (Si NO es contagiado)
                  </math>
             </h6>
 
-            Donde X es el nivel de prevención que se asume. Así, si usted asume un nivel de prevención
+            Donde X es el nivel de prevención que se asume. Por ejemplo, si usted asume un nivel de prevención
             de 3, su pago será:
 
             <h6 align="center">
                  <math>
-	             Pago = 150 + 50 - 3<sup>2</sup> - 100 = 91   (Si se contagia)
+	             Pago = 50 - 3<sup>2</sup> - 70 = -29   (Si se contagia)
                  </math>
             </h6>
 
             <h6 align="center">
                  <math>
-	             Pago = 150 + 50 - 3<sup>2</sup> - 0 = 191   (Si NO se contagia)
+	             Pago = 50 - 3<sup>2</sup> - 0 = 41   (Si NO se contagia)
                  </math>
             </h6>
 
 
         </li>
-        <li>El pago en las rondas siguientes se determinará de la siguiente manera:
+        <li>Al final del juego, su pago total será
 
             <h6 align="center">
                  <math>
-	             Pago = Pago Anterior + 50 - X<sup>2</sup> - 100(Contagiado)
+	             Pago total en el juego = Pago ronda 1 + Pago ronda 2 + ... + Pago ronda 9 + Pago ronda 10
                  </math>
             </h6>
 
-              Donde i indica la ronda e i-1 indica la ronda anterior.</li>
     </ul>
     <tr><td colspan="2"><hr/></td></tr>
     {% next_button %}
