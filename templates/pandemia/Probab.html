@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+<font color="burlywood"><h4 align="right">Tu Etiqueta: {{ participant_id }}</h4></font>
     <div align="justify">
 
     A continuación, presentaremos cómo tanto tu nivel de prevención elegida, como la de tus compañeros afectan a tu
@@ -19,5 +20,11 @@
 
 <tr><td colspan="2"><hr/></td></tr>
     {% next_button %}
+
+    <b>Contáctenos:</b>
+    <br>
+    <img height="2%" width="2%" src="{% static "whatsapp.png"%}"/> <a href="https://wa.me/0051985730063" target="_blank">+51 985 730 063</a>
+    <br>
+    <img height="2%" width="2%" src="{% static "gmail.png"%}"/> e2lab@up.edu.pe
 
 {% endblock %}
