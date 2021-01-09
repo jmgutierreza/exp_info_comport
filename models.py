@@ -17,7 +17,7 @@ This is a ten period pandemic-response game
 
 class Constants(BaseConstants):
     name_in_url = 'pandemia'
-    players_per_group = 5
+    players_per_group = 2
     num_rounds = 10
     instructions_template = 'pandemia/instructions.html'
     prob_intrinseca = int(20)
